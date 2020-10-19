@@ -1,4 +1,3 @@
-  
 #!/usr/bin/env python3
 """Typing project."""
 from typing import Union, Sequence, Any
