@@ -8,10 +8,8 @@ async_comprehension = __import__('1-async_comprehension').async_comprehension
 
 async def measure_runtime() -> float:
     """ Asynchronous coroutine that returns the execution time """
-    tasks = []
     start = time.time()
-    for _ in range(4):
-        tasks.append(asyncio.create_task(async_comprehension))
+    tasks = [async_comprehension() for _ in range(4)]
+    """ tasks.append(asyncio.create_task(async_comprehension())) """
     await asyncio.gather(*tasks)
     return time.time() - start
-
