@@ -76,6 +76,7 @@ def main():
     logger = get_logger()
 
     for i in cursor:
+        list_row = ''.join(f'{f}={str(r)}; ' for r, f in zip(i, fields))
         logger.info(i)
 
     cursor.close()
