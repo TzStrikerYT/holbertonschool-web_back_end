@@ -6,7 +6,10 @@ from api.v1.auth.auth import Auth
 class BasicAuth(Auth):
     """ Basic auth class """
 
-    def extract_base64_authorization_header(self, authorization_header: str) -> str:
+    def extract_base64_authorization_header(
+            self,
+            authorization_header: str
+    ) -> str:
         """ returns the Base64 part of the Authorization header for a Basic Authentication """
         if len(str(authorization_header).split(" ")) == 2:
             if authorization_header \
