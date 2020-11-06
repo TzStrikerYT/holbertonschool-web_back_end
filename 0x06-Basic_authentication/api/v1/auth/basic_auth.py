@@ -6,6 +6,7 @@ from typing import TypeVar, List
 from models.user import User
 from flask import request
 
+
 class BasicAuth(Auth):
     """ Basic auth class """
 
@@ -56,7 +57,8 @@ class BasicAuth(Auth):
             user_email: str,
             user_pwd: str
     ) -> TypeVar('User'):
-        """  returns the User instance based on his email and password """
+        """  returns the User instance based
+         on his email and password """
         if not isinstance(user_email, str) or user_email is None:
             return None
 
