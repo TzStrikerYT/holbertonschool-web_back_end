@@ -3,6 +3,8 @@
 from api.v1.auth.auth import Auth
 from base64 import b64decode
 from typing import TypeVar, List
+from models.user import User
+from flask import request
 
 class BasicAuth(Auth):
     """ Basic auth class """
