@@ -10,7 +10,7 @@ class BasicAuth(Auth):
             self,
             authorization_header: str
     ) -> str:
-        """ returns the Base64 part of the Authorization header for a Basic Authentication """
+        """ Authorization header for a Basic Authentication """
         if len(str(authorization_header).split(" ")) == 2:
             if authorization_header \
                     is not None and 'Basic' \
