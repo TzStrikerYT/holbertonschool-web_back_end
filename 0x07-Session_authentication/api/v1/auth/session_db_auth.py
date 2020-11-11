@@ -57,12 +57,12 @@ class SessionDBAuth(SessionExpAuth):
             return False
 
         session_ids = UserSession.search({'session_id': session_id})
-        if len(session_ids) == 0:
+        if session_ids is None:
             return False
 
         try:
-            session_ids.remove()
-            session_ids.save()
+            session_ids[0].remove()
+            session_ids[0].save()
             UserSession.save_to_file()
         except Exception:
             return False
