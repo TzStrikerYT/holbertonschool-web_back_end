@@ -33,6 +33,9 @@ class SessionDBAuth(SessionExpAuth):
         UserSession.load_from_file()
         session_ids = UserSession.search({'session_id': session_id})
 
+        if session_ids is None:
+            return None
+
         if len(session_id) == 0:
             return None
 
