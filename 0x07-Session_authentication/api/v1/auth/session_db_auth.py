@@ -13,14 +13,16 @@ class SessionDBAuth(SessionExpAuth):
     def create_session(self, user_id=None):
         """ Create Session
         """
+        if user_id is None:
+            return None
+
         session_id = super().create_session(user_id)
         if session_id is None:
-            return
+            return None
 
         user_session = UserSession(**{'user_id': user_id,
                                       'session_id': session_id})
         user_session.save()
-        UserSession.save_to_file()
 
         return session_id
 
@@ -33,13 +35,10 @@ class SessionDBAuth(SessionExpAuth):
         UserSession.load_from_file()
         session_ids = UserSession.search({'session_id': session_id})
 
-        if session_ids is None:
+        if not session_ids:
             return None
 
-        if len(session_id) == 0:
-            return None
-
-        if datetime.now() > session_ids[0].created_at + timedelta(
+        if datetime.utcnow() > session_ids[0].created_at + timedelta(
                 seconds=self.session_duration
         ):
             return None
@@ -56,13 +55,16 @@ class SessionDBAuth(SessionExpAuth):
         if session_id is None:
             return False
 
+        user_id = self.user_id_for_session_id(session_id)
+        if not user_id:
+            return False
+
         session_ids = UserSession.search({'session_id': session_id})
-        if session_ids is None:
+        if not session_ids:
             return False
 
         try:
             session_ids[0].remove()
-            session_ids[0].save()
             UserSession.save_to_file()
         except Exception:
             return False
