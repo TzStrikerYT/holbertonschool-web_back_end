@@ -39,7 +39,7 @@ class SessionDBAuth(SessionExpAuth):
         if len(session_id) == 0:
             return None
 
-        if datetime.now() < session_ids[0].created_at + timedelta(
+        if datetime.now() > session_ids[0].created_at + timedelta(
                 seconds=self.session_duration
         ):
             return None
@@ -61,8 +61,8 @@ class SessionDBAuth(SessionExpAuth):
             return False
 
         try:
-            session_ids[0].remove()
-            session_ids[0].save()
+            session_ids.remove()
+            session_ids.save()
             UserSession.save_to_file()
         except Exception:
             return False
