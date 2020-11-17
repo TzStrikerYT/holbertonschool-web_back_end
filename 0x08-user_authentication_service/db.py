@@ -10,8 +10,9 @@ from user import Base, User
 
 
 class DB:
-
+    """ DB class """
     def __init__(self):
+        """ constructor """
         self._engine = create_engine("sqlite:///a.db", echo=False)
         Base.metadata.drop_all(self._engine)
         Base.metadata.create_all(self._engine)
@@ -19,6 +20,7 @@ class DB:
 
     @property
     def _session(self):
+        """ session getter """
         if self.__session is None:
             DBSession = sessionmaker(bind=self._engine)
             self.__session = DBSession()
@@ -56,7 +58,7 @@ class DB:
             if i not in User.__table__.columns.keys():
                 raise ValueError
 
-        for k, v in kwargs.items():
-            setattr(user, k, v)
+        for key, value in kwargs.items():
+            setattr(user, key, value)
 
         self._session.commit()
