@@ -3,6 +3,8 @@
 from sqlalchemy import create_engine
 from sqlalchemy.ext.declarative import declarative_base
 from sqlalchemy.orm import sessionmaker
+from sqlalchemy.exc import InvalidRequestError
+from sqlalchemy.orm.exc import NoResultFound
 
 from user import Base, User
 
@@ -29,3 +31,20 @@ class DB:
         self._session.commit()  # update the DataBase
 
         return user
+
+    def find_user_by(self, **kwargs) -> User:
+        """ function that finds a created user
+        using a argument """
+        if kwargs is None:
+            raise InvalidRequestError
+
+        for i in kwargs.keys():
+            if i not in User.__table__.columns.keys():
+                raise InvalidRequestError
+
+        user_query = self._session.query(User).filter_by(**kwargs).first()
+
+        if user_query is None:
+            raise NoResultFound
+
+        return user_query
