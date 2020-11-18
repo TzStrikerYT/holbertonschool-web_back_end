@@ -1,5 +1,6 @@
 #!/usr/bin/env python3
 """ auth class """
+from uuid import uuid4
 import bcrypt
 from db import DB
 from user import User
@@ -37,3 +38,7 @@ class Auth:
         else:
             return bcrypt.checkpw(password=password.encode(),
                                   hashed_password=user.hashed_password)
+
+    def _generate_uuid(self) -> str:
+        """ Generates a uuid """
+        return str(uuid4())
