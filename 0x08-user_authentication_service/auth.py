@@ -77,3 +77,13 @@ class Auth:
             return None
 
         user.session_id = None
+
+    def get_reset_password_token(self, email: str) -> str:
+        """ Generates an uuid for reset the passwd """
+        try:
+            user = self._db.find_user_by(email=email)
+        except NoResultFound:
+            raise ValueError
+
+        user.reset_token = _generate_uuid()
+        return user.reset_token
