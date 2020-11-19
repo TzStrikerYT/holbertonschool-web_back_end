@@ -36,6 +36,7 @@ def get_user():
 
 @app.route("/sessions", methods=['POST'], strict_slashes=False)
 def login():
+    """ Generates a response when the users logged in"""
     email = request.form.get('email')
     passwd = request.form.get('password')
 
