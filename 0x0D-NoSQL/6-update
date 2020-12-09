@@ -1,6 +1,6 @@
 // Scrpit that updates a Doc in the school Collection
 db.school.update(
 	{ "name" : "Holberton School"},
-	{$set: { "address": "972 Mission street" } },
-	{multi: true}
+	{ $set: { "address": "972 Mission street" } },
+	{ multi: true }
 )
