@@ -1,4 +1,4 @@
-const Car = require('./10-car.js');
+import Car from './10-car';
 
 export default class EVCar extends Car {
   constructor(brand, motor, color, range) {
@@ -8,10 +8,5 @@ export default class EVCar extends Car {
 
   static get [Symbol.species]() {
     return Car;
-  }
-
-  cloneCar() {
-    const Species = this.constructor[Symbol.species];
-    return new Species(this._brand, this._motor, this._color, this._range);
   }
 }
