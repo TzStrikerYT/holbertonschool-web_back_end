@@ -1,4 +1,3 @@
-const { response } = require('express');
 const fs = require('fs');
 
 function countStudents(path) {
