@@ -3,16 +3,16 @@ const assert = require('assert');
 
 describe('calculateNumber', () => {
     it('checks ouput', () => {
-        assert.equal(calculateNumber(1.5, 2.1), 4);
-        assert.equal(calculateNumber(0, 0.0), 0)
+        assert.strictEqual(calculateNumber(1.5, 2.1), 4);
+        assert.strictEqual(calculateNumber(0, 0.0), 0)
     });
     it('Checks Negatives Numbers', ()=> {
-        assert.equal(calculateNumber(-2, -2), -4);
-        assert.equal(calculateNumber(-10, -5), -15)
+        assert.strictEqual(calculateNumber(-2, -2), -4);
+        assert.strictEqual(calculateNumber(-10, -5), -15)
     })
     it('If can convert to number', ()=> {
-        assert.equal(isNaN(calculateNumber(5)), true);
-        assert.equal(isNaN(calculateNumber('string')), true)
+        assert.strictEqual(isNaN(calculateNumber(5)), true);
+        assert.strictEqual(isNaN(calculateNumber('string')), true)
     })
 })
 
