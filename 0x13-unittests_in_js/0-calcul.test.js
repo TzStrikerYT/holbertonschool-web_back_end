@@ -10,9 +10,9 @@ describe('calculateNumber', () => {
         assert.equal(calculateNumber(-2, -2), -4);
         assert.equal(calculateNumber(-10, -5), -15)
     })
-    it('If is a number', ()=> {
-        assert.equal(calculateNumber(5), true);
-        assert.equal(calculateNumber('string'), false)
+    it('If can convert to number', ()=> {
+        assert.equal(isNaN(calculateNumber(5)), true);
+        assert.equal(isNaN(calculateNumber('string')), true)
     })
 })
 
