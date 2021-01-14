@@ -10,5 +10,9 @@ describe('calculateNumber', () => {
         assert.equal(calculateNumber(-2, -2), -4);
         assert.equal(calculateNumber(-10, -5), -15)
     })
+    it('If is a number', ()=> {
+        assert.equal(calculateNumber(5), true);
+        assert.equal(calculateNumber('string'), false)
+    })
 })
 
